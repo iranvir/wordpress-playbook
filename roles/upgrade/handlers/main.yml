@@ -1,0 +1,9 @@
+- name: Autoremove Packages using DNF
+  ansible.builtin.dnf:
+    autoremove: yes
+    purge: yes
+
+- name: Autoremove Packages using APT
+  ansible.builtin.apt:
+    autoremove: yes
+    purge: yes

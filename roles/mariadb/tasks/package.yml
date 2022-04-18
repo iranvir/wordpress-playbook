@@ -1,0 +1,6 @@
+- ansible.builtin.package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+  - mariadb-server
+  - python3-pymysql

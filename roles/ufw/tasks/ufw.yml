@@ -1,0 +1,7 @@
+- name: UFW allow OpenSSH
+  community.general.ufw:
+    rule: allow
+    name: OpenSSH
+
+- community.general.ufw:
+    state: enabled

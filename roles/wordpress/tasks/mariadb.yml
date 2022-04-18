@@ -1,0 +1,13 @@
+- name: Creates database for WordPress
+  community.mysql.mysql_db:
+    name: "{{ wordpress_mysql_db }}"
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+- name: Create MySQL user for WordPress
+  community.mysql.mysql_user:
+    name: "{{ wordpress_mysql_user }}"
+    password: "{{ wordpress_mysql_password }}"
+    priv: "{{ wordpress_mysql_db }}.*:ALL"
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock

@@ -1,0 +1,23 @@
+- ansible.builtin.package:
+    name: snapd
+    state: present
+
+- ansible.builtin.systemd:
+    name: snapd
+    enabled: true
+    state: started
+
+- name: Update snap after install.
+  shell: snap install core; snap refresh core
+
+
+- name: Install certbot via snap.
+  community.general.snap:
+    name: certbot
+    classic: true
+
+- name: Symlink certbot into place.
+  ansible.builtin.file:
+    src: /snap/bin/certbot
+    dest: /usr/bin/certbot
+    state: link

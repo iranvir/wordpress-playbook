@@ -1,0 +1,16 @@
+- name: Update all packages for Debian-like Systems
+  apt:
+    update_cache: yes
+    name: '*'
+    force_apt_get: yes
+    state: latest
+  when: ansible_facts['os_family'] == 'Debian'
+  notify: Autoremove Packages using APT
+
+- name: Update all packages for RHEL like systems
+  dnf:
+    update_cache: yes
+    name: "*"
+    state: latest
+  when: ansible_facts['os_family'] == 'RedHat'
+  notify: Autoremove Packages using DNF

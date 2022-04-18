@@ -1,0 +1,14 @@
+- name: Remove default nginx configs
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: absent
+  with_items:
+  - /etc/nginx/sites-available
+  - /etc/nginx/sites-enabled
+  - /var/www/html
+
+- name: Create custom Nginx config
+  ansible.builtin.template:
+    src: nginx.j2
+    dest: /etc/nginx/conf.d/{{ primary_name }}.conf
+  notify: Restart Nginx

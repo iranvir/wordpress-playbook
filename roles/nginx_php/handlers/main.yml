@@ -1,0 +1,9 @@
+- name: UFW allow Nginx
+  community.general.ufw:
+    rule: allow
+    name: Nginx Full
+
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
